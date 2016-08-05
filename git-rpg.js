@@ -2,33 +2,61 @@
 
 var exec = require('child_process').exec;
 var program = require('commander');
-var commitMessage = null;
+var noActionOrArgumentsPassed = process.argv.length === 2;
 
 
 
 program
-  .version('0.1.0')
-  .arguments('<message>')
+  .version('0.1.0');
+
+
+
+program
+  .command('adventure <message>')
+  .description('Begin a quick and exciting adventure! This stages all changes and makes a commit with the <message> you pass in.')
   .action(function(message) {
-    commitMessage = message;
-  })
-  .parse(process.argv);
+    exec('git add -A');
+    exec(`git commit -m "${message}"`);
 
-
-
-if (commitMessage) {
-  exec(`git commit -m "${commitMessage}"`, function (error, stdout, stderr) {
-    // console.log(stdout);
-    // console.log(stderr);
+    exec('git log --max-count=1 --pretty=tformat: --numstat', function (error, stdout, stderr) {
+      var commitStatistics = returnCommitTotals(stdout);
+      console.log(commitStatistics);
+    });
   });
 
-  exec('git log --max-count=1 --pretty=tformat: --numstat', function (error, stdout, stderr) {
-    var commitStatistics = returnCommitTotals(stdout);
-    console.log(commitStatistics);
-  });
-}
 
-else {
+
+program
+  .command('inventory')
+  .description('View and manage your weapons, items, and gear.')
+  .action(function() {
+    console.log('You have nothing in your inventory yet.');
+  });
+
+
+
+program
+  .command('character')
+  .description('View details about your experience and satistics.')
+  .action(function() {
+    console.log('You have no experience yet.');
+  });
+
+
+
+program
+   .command('*')
+   .action(function() {
+     program.help();
+   });
+
+
+
+program.parse(process.argv);
+
+
+
+if (noActionOrArgumentsPassed) {
   program.help();
 }
 
