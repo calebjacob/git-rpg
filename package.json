@@ -1,6 +1,6 @@
 {
   "name": "git-rpg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Earn XP, fight goblins, and hoard loot while you commit and push throughout the day!",
   "main": "git-rpg.js",
   "scripts": {
