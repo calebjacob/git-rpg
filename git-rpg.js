@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 
+var exec = require('child_process').exec;
 var program = require('commander');
+var gitChildProcess;
 
 program
   .version('0.1.0')
-  .option('-f, --foobar', 'Do something')
+  .option('-m, --message', 'commit message')
   .parse(process.argv);
 
-console.log('You did a thing!');
+var gitChildProcess = exec(`git commit -m "${program.message}"`, function (error, stdout, stderr) {
+  console.log('======== stdout: ' + stdout);
+  console.log('======== stderr: ' + stderr);
 
-if (program.foobar) {
-  console.log('Foobar for you!');
-}
-
-else {
-  console.log('No foobar for you...');
-}
+  if (error) {
+    console.log('exec error: ' + error);
+  }
+});
