@@ -1,0 +1,25 @@
+{
+  "name": "git-rpg",
+  "version": "0.1.0",
+  "description": "Earn XP, fight goblins, and hoard loot while you commit and push throughout the day!",
+  "main": "git-rpg.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamceege/git-rpg.git"
+  },
+  "author": "Caleb Jacob",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/iamceege/git-rpg/issues"
+  },
+  "homepage": "https://github.com/iamceege/git-rpg#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "bin": {
+    "git-rpg": "git-rpg.js"
+  }
+}
