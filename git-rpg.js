@@ -13,7 +13,7 @@ program
 
 program
   .command('adventure <message>')
-  .description('Begin a quick and exciting adventure! This stages all changes and makes a commit with the <message> you pass in.')
+  .description('Begin a quick and exciting adventure! This is equivalent to "git add -A && git commit -m <message>".')
   .action(function(message) {
     exec('git add -A');
     exec(`git commit -m "${message}"`);
