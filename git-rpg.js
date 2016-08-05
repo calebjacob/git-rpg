@@ -10,10 +10,6 @@ program
   .parse(process.argv);
 
 var gitChildProcess = exec(`git commit -m "${program.message}"`, function (error, stdout, stderr) {
-  console.log('======== stdout: ' + stdout);
-  console.log('======== stderr: ' + stderr);
-
-  if (error) {
-    console.log('exec error: ' + error);
-  }
+  console.log(stdout);
+  console.log(stderr);
 });
