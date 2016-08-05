@@ -2,14 +2,14 @@
 
 var exec = require('child_process').exec;
 var program = require('commander');
-var gitChildProcess;
 
 program
   .version('0.1.0')
-  .option('-m, --message', 'commit message')
+  .arguments('<message>')
+  .action(function(message) {
+    exec(`git commit -m "${message}"`, function (error, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+    });
+  });
   .parse(process.argv);
-
-var gitChildProcess = exec(`git commit -m "${program.message}"`, function (error, stdout, stderr) {
-  console.log(stdout);
-  console.log(stderr);
-});
